@@ -1,6 +1,7 @@
 <h2>{{title}}</h2>
 
 <form action="" id='update'>
+    <input type="hidden" name="id" value="{{ID}}">
     <label for="">
         firstname :
     </label>
@@ -11,5 +12,9 @@
     <input type="text" name="lastname" value="{{lastname}}">
 
     <input type="submit" value="update">
+    <input type="submit" value="delete">
 
 </form>
+
+<script src="/js/edit-client.js"></script>
+<script src="/js/delete-client.js"></script>

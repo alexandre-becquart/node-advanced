@@ -48,29 +48,48 @@ exports.clientscreate = async (req, res, next) => {
 }
 
 exports.editclient = async (req, res, next) => {
-    let clients = await Client.findOne({
+    let clients = await Client.findOne({ // je vais chercher l'élement qui porte le même id que ma requête
         _id: req.params.id
     })
-    console.log(clients);
+    //console.log(req.params);
     res.render('pages/edit-client', {
         title: 'Edit CLient',
-        ID: req.params.id,
+        id, //ID: req.params.id
         firstname: clients.firstname,
         lastname: clients.lastname,
 
 
     })
+
 }
 
 exports.updateclient = async (req, res, next) => {
     try { // il essaie de créer un client
-        let client = new Client(req.body) // créer l'élement avec le model
         try { // il essaie de sauvegarder le nouveau client
-            res.send(await client.save()) // on sauvegarde le client
+            console.log(req.body);
+            res.send(await Client.updateOne({ // je cherche à mettre à jours un seul élément mais il a besoin de l'id // on va récupérer l'élément selon l'id
+                    _id: req.params.id // il recupère l'id de la requête 
+                },
+                req.body // je récupère donc la requête du body
+            )) // on sauvegarde le client
         } catch (e) { // on gère l'erreur
             console.log(e);
         }
     } catch (e) {
         console.log(e);
     }
+}
+
+exports.deletedclient = async (req, res, next) => {
+    res.send(await Client.deleteOne({ // supprime l'élément selectionné
+        _id: req.params.id
+    }))
+
+    // try {
+    //     clients.remove()
+
+    // } catch (e) {
+    //     console.log(e);
+    // }
+
 }

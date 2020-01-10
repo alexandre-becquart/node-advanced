@@ -12,7 +12,8 @@ router.get('/about', pageController.about)
 router.get('/clients', pageController.clients)
 router.post('/clients', pageController.clientscreate)
 router.get('/clients/:id', pageController.editclient)
-router.pos('/clients/:id', pageController.updateclient)
+router.patch('/clients/:id', pageController.updateclient)
+router.delete('/clients/:id', pageController.deletedclient)
 router.get('/client_form', pageController.clientform)
 //error managememnt
 
